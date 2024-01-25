@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Hypick122/ExplosivePresents/compare/v1.0.1...v1.0.2) (2024-01-25)
+
+
+### Miscellaneous Chores
+
+* Update icon ([1e1aa4a](https://github.com/Hypick122/ExplosivePresents/commit/1e1aa4abc7f15e974d6ac75bb0de5bdd31643387))
+
 ## 1.0.1 (2024-01-25)
 
 
