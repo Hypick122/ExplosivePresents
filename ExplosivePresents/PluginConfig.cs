@@ -4,21 +4,21 @@ namespace Hypick;
 
 public static class Categories
 {
-    public const string Present = "Present";
+    public const string Present = nameof(Present);
 }
 
 public class PluginConfig
 {
-    public int SpawnChance;
+    public float SpawnChance;
     public float KillRange;
     public float DamageRange;
     public float Delay;
 
     public PluginConfig(ConfigFile cfg)
     {
-        SpawnChance = cfg.Bind<int>(Categories.Present, "spawnChance", 10, "Chance of the present exploding").Value;
-        KillRange = cfg.Bind<float>(Categories.Present, "killRange", 10f, "Explosion kill range").Value;
-        DamageRange = cfg.Bind<float>(Categories.Present, "damageRange", 10f, "Explosion damage range").Value;
-        Delay = cfg.Bind<float>(Categories.Present, "delay", 0.5f, "Delay before explosion. In seconds").Value;
+        SpawnChance = cfg.Bind<float>(Categories.Present, nameof(SpawnChance), 10f, new ConfigDescription("Chance of the present exploding", new AcceptableValueRange<float>(0f, 100f))).Value;
+        KillRange = cfg.Bind<float>(Categories.Present, nameof(KillRange), 5.7f, "Explosion kill range").Value;
+        DamageRange = cfg.Bind<float>(Categories.Present, nameof(DamageRange), 6.4f, "Explosion damage range").Value;
+        Delay = cfg.Bind<float>(Categories.Present, nameof(Delay), 0.5f, "Delay before explosion. In seconds").Value;
     }
 }

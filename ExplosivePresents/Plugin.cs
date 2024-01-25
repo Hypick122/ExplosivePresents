@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using Hypick.Services;
 
 namespace Hypick;
 
@@ -16,8 +15,6 @@ public class Plugin : BaseUnityPlugin
 
     private readonly Harmony _harmony = new(PluginInfo.PLUGIN_GUID);
 
-    public TemplateService Service;
-
     public Plugin()
     {
         Instance = this;
@@ -26,8 +23,6 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         Config = new PluginConfig(base.Config);
-        
-        Service = new TemplateService();
 
         Log.LogInfo($"Applying patches...");
         _harmony.PatchAll();

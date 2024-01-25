@@ -5,6 +5,10 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
 
+        <AssemblyName>Hypick.ExplosivePresents</AssemblyName>
+        <Product>ExplosivePresents</Product>
+        <Version>1.0.1</Version>
+
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
 
