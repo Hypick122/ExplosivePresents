@@ -31,7 +31,11 @@ ExplosivePresents
 
 ## Changelog
 
-## [1.0.1] - 25.01.2024 | Current version
+## [1.0.2] - 25.01.2024 | Current version
+
+- Update icon
+
+## [1.0.1] - 25.01.2024
 
 - The config has been slightly updated, I advise you to rewrite it completely
 - Fixed an issue where an item would drop out along with a mine
