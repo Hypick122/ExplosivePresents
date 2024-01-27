@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Hypick122/ExplosivePresents/compare/v1.0.2...v1.1.0) (2024-01-27)
+
+
+### Features
+
+* Added network ([b9e8cd0](https://github.com/Hypick122/ExplosivePresents/commit/b9e8cd0b5700eff219eaf851d2c37b7fac221265))
+
 ## [1.0.2](https://github.com/Hypick122/ExplosivePresents/compare/v1.0.1...v1.0.2) (2024-01-25)
 
 
