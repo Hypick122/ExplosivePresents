@@ -21,7 +21,7 @@ readme = "README.md"
 outdir = "build"
 
 [[build.copy]]
-source = "bin/ExplosivePresents/Hypick.ExplosivePresents.dll"
+source = "ExplosivePresents/ExplosivePresents/bin/ExplosivePresents/Hypick.ExplosivePresents.dll"
 target = "ExplosivePresents.dll"
 
 [[build.copy]]

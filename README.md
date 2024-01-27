@@ -25,7 +25,7 @@ ExplosivePresents
 
 ## Changelog
 
-## [1.1.0] - 27.01.2024 | Current version
+## [1.1.0] - 28.01.2024 | Current version
 
 - Added network
 - Fixed an issue where only the player who opened the gift would explode
