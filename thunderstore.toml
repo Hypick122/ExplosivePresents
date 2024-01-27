@@ -21,7 +21,7 @@ readme = "README.md"
 outdir = "build"
 
 [[build.copy]]
-source = "ExplosivePresents/bin/ExplosivePresents/Hypick.ExplosivePresents.dll"
+source = "bin/ExplosivePresents/Hypick.ExplosivePresents.dll"
 target = "ExplosivePresents.dll"
 
 [[build.copy]]
@@ -31,6 +31,10 @@ target = "CHANGELOG.md"
 [[build.copy]]
 source = "LICENSE"
 target = "LICENSE"
+
+[[build.copy]]
+source = "Assets"
+target = "Assets"
 
 [publish]
 communities = ["lethal-company"]

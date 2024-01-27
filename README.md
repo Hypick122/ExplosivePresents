@@ -5,13 +5,10 @@
 
 This mod copies and improves some aspects of the [ExplosiveUnboxing](https://thunderstore.io/c/lethal-company/p/Nebulaetrix/ExplosiveUnboxing/) mod by Nebulaetrix, which was marked as outdated by it.
 
+! Due to changes in the gift code, this mod is incompatible with other mods that change the gift code
+
 Chance of explosion, range, etc. can be configured in the config ```Hypick.ExplosivePresents.cfg```
 ExplosivePresents
-
-## Known issues
-
-- Due to changes in the gift code, this mod is not compatible with other mods that change the gift code
-- Gift explosion cannot explode all players
 
 </details>
 
@@ -20,18 +17,20 @@ ExplosivePresents
 
 Этот мод копирует и улучшает некоторые аспекты мода [ExplosiveUnboxing](https://thunderstore.io/c/lethal-company/p/Nebulaetrix/ExplosiveUnboxing/) от Nebulaetrix, который был помечен им как устаревшив.
 
+! Из-за измнений в коде подарка, этот мод несовместим с другими модами, которые меняют код подарка
+
 Шанс взрыв, дальность поражения и т.д. можно настроить в конфиге ```Hypick.ExplosivePresents.cfg```
-
-## Известные проблемы
-
-- Из-за измнений в коде подарка, этот мод не совместим с другими модами, которые меняют код подарка
-- Взрыв подарка не может взорвать всех игроков
 
 </details>
 
 ## Changelog
 
-## [1.0.2] - 25.01.2024 | Current version
+## [1.1.0] - 27.01.2024 | Current version
+
+- Added network
+- Fixed an issue where only the player who opened the gift would explode
+
+## [1.0.2] - 25.01.2024
 
 - Update icon
 
