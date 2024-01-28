@@ -7,7 +7,7 @@
 
         <AssemblyName>Hypick.ExplosivePresents</AssemblyName>
         <Product>ExplosivePresents</Product>
-        <Version>1.1.0</Version>
+        <Version>1.1.3</Version>
 
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>

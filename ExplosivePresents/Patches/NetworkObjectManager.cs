@@ -15,7 +15,14 @@ public class NetworkObjectManager
         if (networkPrefab != null)
             return;
         
-        var MainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/netcodemod"));
+        // var MainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/netcodemod"));
+        var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/netcodemod");
+        AssetBundle MainAssetBundle;
+        if (File.Exists(path))
+            MainAssetBundle = AssetBundle.LoadFromFile(path);
+        else
+            MainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "netcodemod"));
+            
         Plugin.Log.LogInfo($"Loading NetworkManager Prefab: {MainAssetBundle}");
         networkPrefab = (GameObject)MainAssetBundle.LoadAsset("Assets/Necode/NetwordManager.prefab");
         networkPrefab.AddComponent<NetworkHandler>();
