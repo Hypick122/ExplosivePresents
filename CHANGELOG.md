@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/Hypick122/ExplosivePresents/compare/v1.1.2...v1.1.3) (2024-01-28)
+
+
+### Bug Fixes
+
+* network file search changed ([3e61230](https://github.com/Hypick122/ExplosivePresents/commit/3e6123007e3533c99ab911fe5f8bfe6e4bc40ae5))
+
 ## [1.1.2](https://github.com/Hypick122/ExplosivePresents/compare/v1.1.1...v1.1.2) (2024-01-27)
 
 
