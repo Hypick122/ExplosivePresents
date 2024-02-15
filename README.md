@@ -23,9 +23,21 @@ ExplosivePresents
 
 </details>
 
+## Contributing
+
+If you have an idea for a mod or find a problem, you can open an [issue](https://github.com/Hypick122/ExplosivePresents/issues) or [pull request](https://github.com/Hypick122/ExplosivePresents/pulls) on Github.
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/Hypick122/ExplosivePresents?tab=MIT-1-ov-file).
+
 ## Changelog
 
-## [1.1.3] - 28.01.2024 | Current version
+## [1.1.4] - 15.02.2024 | Current version
+
+- updated the Readme file
+
+## [1.1.3] - 28.01.2024
 
 - Fixed problem with network file
 

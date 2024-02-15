@@ -12,7 +12,7 @@
         <!-- PROGRA~2 is the short path for Program Files (x86) -->
         <GameDir>C:\PROGRA~2\Steam\steamapps\common\Lethal Company\</GameDir>
         <!-- Path of the game's plugin directory where the built plugin will be copied to -->
-        <PluginGameDir>$(GameDir)BepInEx\plugins\</PluginGameDir>
+        <PluginGameDir>$(GameDir)BepInEx\plugins\ExplosivePresents\</PluginGameDir>
         <!-- Path of the game's managed directory where the game's dlls are located -->
         <AssemblyGameDir>$(GameDir)Lethal Company_Data\Managed\</AssemblyGameDir>
         <!-- Name of the game executable -->
