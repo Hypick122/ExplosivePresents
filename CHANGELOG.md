@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/Hypick122/ExplosivePresents/compare/v1.1.3...v1.1.4) (2024-02-15)
+
+
+### Code Refactoring
+
+* minor changes, license change ([7f155bb](https://github.com/Hypick122/ExplosivePresents/commit/7f155bbd90f0f3d23c7144f9f4859a25a89e9110))
+
 ## [1.1.3](https://github.com/Hypick122/ExplosivePresents/compare/v1.1.2...v1.1.3) (2024-01-28)
 
 
