@@ -13,11 +13,11 @@ namespace Hypick;
 [BepInIncompatibility("ExplodingPresents")]
 public class Plugin : BaseUnityPlugin
 {
-	public static Plugin Instance { get; set; }
+	private static Plugin Instance { get; set; }
 
 	public static ManualLogSource Log => Instance.Logger;
 
-	public static new PluginConfig Config;
+	public new static PluginConfig Config;
 
 	private readonly Harmony _harmony = new(PluginInfo.PLUGIN_GUID);
 
@@ -45,10 +45,8 @@ public class Plugin : BaseUnityPlugin
 			foreach (var method in methods)
 			{
 				var attributes = method.GetCustomAttributes(typeof(RuntimeInitializeOnLoadMethodAttribute), false);
-				if (attributes.Length > 0)
-				{
+				if (attributes.Length > 0) 
 					method.Invoke(null, null);
-				}
 			}
 		}
 	}

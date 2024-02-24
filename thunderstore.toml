@@ -22,7 +22,7 @@ outdir = "build"
 
 [[build.copy]]
 source = "ExplosivePresents/bin/Hypick.ExplosivePresents.dll"
-target = "ExplosivePresents.dll"
+target = "BepInEx/plugins/ExplosivePresents.dll"
 
 [[build.copy]]
 source = "CHANGELOG.md"

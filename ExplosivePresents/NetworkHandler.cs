@@ -16,7 +16,9 @@ public class NetworkHandler : NetworkBehaviour
 		if (networkManager == null || !networkManager.IsListening)
 			return;
 
-		if (__rpc_exec_stage != __RpcExecStage.Server && (networkManager.IsClient || networkManager.IsHost)) { }
+		if (__rpc_exec_stage != __RpcExecStage.Server && (networkManager.IsClient || networkManager.IsHost))
+		{
+		}
 
 		if (__rpc_exec_stage == __RpcExecStage.Server && (networkManager.IsServer || networkManager.IsHost))
 		{
@@ -31,15 +33,19 @@ public class NetworkHandler : NetworkBehaviour
 		if (networkManager == null || !networkManager.IsListening)
 			return;
 
-		if (__rpc_exec_stage != __RpcExecStage.Client && (networkManager.IsServer || networkManager.IsHost)) { }
+		if (__rpc_exec_stage != __RpcExecStage.Client && (networkManager.IsServer || networkManager.IsHost))
+		{
+		}
 
 		if (__rpc_exec_stage == __RpcExecStage.Client && (networkManager.IsClient || networkManager.IsHost))
 		{
-			base.StartCoroutine(DelayedExplosion(explosionPosition, true, Plugin.Config.KillRange, Plugin.Config.DamageRange, Plugin.Config.Delay));
+			base.StartCoroutine(DelayedExplosion(explosionPosition, true, Plugin.Config.KillRange,
+				Plugin.Config.DamageRange, Plugin.Config.Delay));
 		}
 	}
 
-	static IEnumerator DelayedExplosion(Vector3 explosionPosition, bool spawnExplosionEffect = false, float killRange = 1f, float damageRange = 1f, float Delay = 1)
+	private static IEnumerator DelayedExplosion(Vector3 explosionPosition, bool spawnExplosionEffect = false,
+		float killRange = 1f, float damageRange = 1f, float Delay = 1)
 	{
 		Landmine landmine = Resources.FindObjectsOfTypeAll<Landmine>()[0];
 
@@ -56,7 +62,8 @@ public class NetworkHandler : NetworkBehaviour
 		yield return new WaitForSeconds(Delay);
 
 		mineAudio.GetComponent<AudioSource>().PlayOneShot(landmine.mineDetonate, 1f);
-		Landmine.SpawnExplosion(explosionPosition + Vector3.up, spawnExplosionEffect: spawnExplosionEffect, killRange, damageRange);
+		Landmine.SpawnExplosion(explosionPosition + Vector3.up, spawnExplosionEffect: spawnExplosionEffect, killRange,
+			damageRange);
 		// }
 	}
 
@@ -67,6 +74,7 @@ public class NetworkHandler : NetworkBehaviour
 
 		if (Instance == null)
 			Instance = this;
+		
 		base.OnNetworkSpawn();
 	}
 }

@@ -11,14 +11,13 @@ internal class GiftBoxItemPatch
 {
 	[HarmonyPatch("OpenGiftBoxServerRpc")]
 	[HarmonyPrefix]
-	static bool OpenGiftBox(GiftBoxItem __instance)
+	public static bool OpenGiftBox(GiftBoxItem __instance)
 	{
-		if (Mathf.Clamp(Plugin.Config.SpawnChance, 0f, 100f) / 100f > Random.Range(0f, 0.99f))
-		{
-			NetworkHandler.Instance.CustomExplodeMineServerRpc(__instance.transform.position);
-			return OpenGiftBoxCustom(__instance, true);
-		}
-		return OpenGiftBoxCustom(__instance);
+		if (!(Mathf.Clamp(Plugin.Config.SpawnChance, 0f, 100f) / 100f > Random.Range(0f, 0.99f)))
+			return OpenGiftBoxCustom(__instance);
+
+		NetworkHandler.Instance.CustomExplodeMineServerRpc(__instance.transform.position);
+		return OpenGiftBoxCustom(__instance, true);
 	}
 
 	private static bool OpenGiftBoxCustom(GiftBoxItem __instance, bool explosive = false)
@@ -27,35 +26,42 @@ internal class GiftBoxItemPatch
 		if (networkManager == null || !networkManager.IsListening)
 			return false;
 
-		if ((RpcExecStage)__instance.GetType().GetField("__rpc_exec_stage", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance) != RpcExecStage.Server && (networkManager.IsClient || networkManager.IsHost))
+		if (GetPrivateField<RpcExecStage>(__instance, "__rpc_exec_stage") != RpcExecStage.Server &&
+		    (networkManager.IsClient || networkManager.IsHost))
 		{
 			ServerRpcParams serverRpcParams = new();
-			FastBufferWriter bufferWriter = (FastBufferWriter)__instance.GetType().GetMethod("__beginSendServerRpc", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, [2878544999u, serverRpcParams, RpcDelivery.Reliable]);
-			__instance.GetType().GetMethod("__endSendServerRpc", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, [bufferWriter, 2878544999u, serverRpcParams, RpcDelivery.Reliable]);
+
+			FastBufferWriter bufferWriter = (FastBufferWriter)GetPrivateMethod(__instance, "__beginSendServerRpc",
+				[2878544999u, serverRpcParams, RpcDelivery.Reliable]);
+			GetPrivateMethod(__instance, "__endSendServerRpc",
+				[bufferWriter, 2878544999u, serverRpcParams, RpcDelivery.Reliable]);
 		}
-		if ((RpcExecStage)__instance.GetType().GetField("__rpc_exec_stage", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance) != RpcExecStage.Server || (!networkManager.IsClient && !networkManager.IsHost))
+
+		if (GetPrivateField<RpcExecStage>(__instance, "__rpc_exec_stage") != RpcExecStage.Server ||
+		    (!networkManager.IsClient && !networkManager.IsHost))
 			return false;
 
 		if (explosive)
 		{
-			Plugin.Log.LogInfo("OPEN GIFTBOX WTTH BOMB AHAHAAHAAH");
+			Plugin.Log.LogInfo("Opening a gift with a bomb inside :)");
 			__instance.OpenGiftBoxNoPresentClientRpc();
 			return false;
 		}
 
-		Plugin.Log.LogInfo("OPEN GIFTBOX without bomb :(");
+		Plugin.Log.LogInfo("Opening a gift without a bomb :(");
 
 		GameObject gameObject = null;
-		int presentValue = 0;
+		var presentValue = 0;
 		Vector3 vector = Vector3.zero;
-		GameObject objectInPresent = (GameObject)__instance.GetType().GetField("objectInPresent", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
+		GameObject objectInPresent = GetPrivateField<GameObject>(__instance, "objectInPresent");
 
 		if (objectInPresent == null)
 			Debug.LogError("Error: There is no object in gift box!");
 		else
 		{
 			Transform parent;
-			if (((__instance.playerHeldBy != null && __instance.playerHeldBy.isInElevator) || StartOfRound.Instance.inShipPhase) && RoundManager.Instance.spawnedScrapContainer != null)
+			if (((__instance.playerHeldBy != null && __instance.playerHeldBy.isInElevator) ||
+			     StartOfRound.Instance.inShipPhase) && RoundManager.Instance.spawnedScrapContainer != null)
 				parent = RoundManager.Instance.spawnedScrapContainer;
 			else
 				parent = StartOfRound.Instance.elevatorTransform;
@@ -63,7 +69,8 @@ internal class GiftBoxItemPatch
 			vector = __instance.transform.position + Vector3.up * 0.25f;
 			gameObject = Object.Instantiate(objectInPresent, vector, Quaternion.identity, parent);
 			GrabbableObject component = gameObject.GetComponent<GrabbableObject>();
-			PlayerControllerB previousPlayerHeldBy = (PlayerControllerB)__instance.GetType().GetField("previousPlayerHeldBy", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
+			PlayerControllerB previousPlayerHeldBy =
+				GetPrivateField<PlayerControllerB>(__instance, "previousPlayerHeldBy");
 
 			component.startFallingPosition = vector;
 			__instance.StartCoroutine(__instance.SetObjectToHitGroundSFX(component));
@@ -71,7 +78,7 @@ internal class GiftBoxItemPatch
 			if (previousPlayerHeldBy != null && previousPlayerHeldBy.isInHangarShipRoom)
 				previousPlayerHeldBy.SetItemInElevator(droppedInShipRoom: true, droppedInElevator: true, component);
 
-			presentValue = (int)__instance.GetType().GetField("objectInPresentValue", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
+			presentValue = GetPrivateField<int>(__instance, "objectInPresent");
 			component.SetScrapValue(presentValue);
 			component.NetworkObject.Spawn();
 		}
@@ -85,8 +92,22 @@ internal class GiftBoxItemPatch
 
 	private enum RpcExecStage
 	{
-		None,
-		Server,
-		Client
+		Server
+	}
+
+	private static object GetPrivateMethod(object instance, string methodName, params object[] args)
+	{
+		const BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
+		MethodInfo field = instance.GetType().GetMethod(methodName, bindingFlags);
+
+		return field?.Invoke(instance, args);
+	}
+
+	private static T GetPrivateField<T>(object instance, string fieldName)
+	{
+		const BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
+		FieldInfo field = instance.GetType().GetField(fieldName, bindingFlags);
+
+		return (T)field?.GetValue(instance);
 	}
 }
